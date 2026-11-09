@@ -1,0 +1,1 @@
+import Link from "next/link"; export default function NotFound(){return <main className="shell"><header className="top"><Link className="brand" href="/"> <b>N</b> nakul<span>.docs</span></Link></header><article><h1>Document not found.</h1><p>This link may be incorrect or the document may no longer be available.</p><Link href="/">Back to documentation</Link></article></main>}
