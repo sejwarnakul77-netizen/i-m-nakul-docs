@@ -1,0 +1,4 @@
+import { supabase } from "@/lib/supabase";
+export type Doc = { id:string; title:string; content:string; created_at:string|null; updated_at:string|null };
+export async function getDocuments():Promise<Doc[]> { if(!supabase) throw new Error("Missing Supabase environment variables."); const {data,error}=await supabase.from("documents").select("id,title,content,created_at,updated_at").order("updated_at",{ascending:false}); if(error) throw new Error(error.message); return (data??[]) as Doc[]; }
+export async function getDocument(id:string):Promise<Doc|null> { if(!supabase) throw new Error("Missing Supabase environment variables."); const {data,error}=await supabase.from("documents").select("id,title,content,created_at,updated_at").eq("id",id).maybeSingle(); if(error) throw new Error(error.message); return data as Doc|null; }
